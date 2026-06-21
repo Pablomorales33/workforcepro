@@ -18,6 +18,131 @@ interface LandingViewProps {
   };
 }
 
+function InteractiveFeaturePreview({ activeTab }: { activeTab: 'schedule' | 'ai' | 'clock' | 'morale' }) {
+  if (activeTab === 'schedule') {
+    return (
+      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 w-full h-[280px] flex flex-col justify-between text-xs text-gray-700">
+        <div>
+          <div className="flex justify-between items-center mb-4">
+            <h5 className="font-extrabold text-[#002171] uppercase tracking-wider text-[11px]">Shift Scheduler - Friday</h5>
+            <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Budget: $1,200/day</span>
+          </div>
+          <div className="space-y-2">
+            {/* Employee 1 */}
+            <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+              <span className="font-semibold text-gray-900">Alex Rivera (Chef)</span>
+              <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded text-[10px]">08:00 AM - 04:00 PM</span>
+            </div>
+            {/* Employee 2 */}
+            <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+              <span className="font-semibold text-gray-900">Sarah Connor (Server)</span>
+              <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded text-[10px]">11:00 AM - 07:00 PM</span>
+            </div>
+            {/* Employee 3 */}
+            <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+              <span className="font-semibold text-gray-900">John Doe (Host)</span>
+              <span className="bg-blue-600 text-white font-bold px-3 py-1 rounded text-[10px]">04:00 PM - 11:00 PM</span>
+            </div>
+          </div>
+        </div>
+        <div className="border-t pt-2 flex justify-between items-center text-[10px] text-gray-500">
+          <span>Total Hours: 23 hrs</span>
+          <span className="text-[#002171] font-bold">Labor Cost: 11.8% of Sales</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (activeTab === 'ai') {
+    return (
+      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 w-full h-[280px] flex flex-col justify-between text-xs text-gray-700">
+        <div>
+          <div className="flex justify-between items-center mb-4">
+            <h5 className="font-extrabold text-[#002171] uppercase tracking-wider text-[11px]">Gemini AI Assistant</h5>
+            <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Auto-Audit</span>
+          </div>
+          <div className="bg-purple-50 border border-purple-100 rounded-xl p-3 mb-3">
+            <p className="font-semibold text-purple-950 text-[11px] mb-1">Swap Request Detected:</p>
+            <p className="text-[11px] text-purple-900 leading-snug">
+              <strong>Alex R.</strong> wants to swap <strong>Friday Evening</strong> with <strong>Sarah C.</strong>
+            </p>
+          </div>
+          <div className="space-y-1.5 pl-1">
+            <div className="flex items-center gap-2 text-[10px] text-emerald-700 font-bold">
+              <span className="text-emerald-500">✓</span> No overtime threshold breached (Alex: 32h, Sarah: 28h)
+            </div>
+            <div className="flex items-center gap-2 text-[10px] text-emerald-700 font-bold">
+              <span className="text-emerald-500">✓</span> Qualifications match (Both certified food handlers)
+            </div>
+            <div className="flex items-center gap-2 text-[10px] text-emerald-700 font-bold">
+              <span className="text-emerald-500">✓</span> 11-hour rest period compliance verified
+            </div>
+          </div>
+        </div>
+        <button className="w-full bg-[#002b6b] hover:bg-[#002171] text-white font-bold py-2 rounded-lg text-center transition-colors text-[10px] cursor-pointer">
+          Approve AI Suggested Swap
+        </button>
+      </div>
+    );
+  }
+
+  if (activeTab === 'clock') {
+    return (
+      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 w-full h-[280px] flex flex-col justify-between text-xs text-gray-700">
+        <div>
+          <div className="flex justify-between items-center mb-3">
+            <h5 className="font-extrabold text-[#002171] uppercase tracking-wider text-[11px]">GPS Clock-In Verification</h5>
+            <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">On-Site</span>
+          </div>
+          <div className="flex gap-3 items-center bg-gray-50 p-3 rounded-xl border border-gray-100 mb-3">
+            <div className="w-12 h-12 rounded-full border-2 border-emerald-500 bg-[#002171] text-white flex items-center justify-center font-bold text-sm shrink-0">
+              AR
+            </div>
+            <div>
+              <p className="font-bold text-[11px] text-gray-900">Alex Rivera</p>
+              <p className="text-[10px] text-gray-500">Scheduled: 08:00 AM (Chef)</p>
+            </div>
+          </div>
+          <div className="bg-emerald-50 border border-emerald-100 rounded-lg p-2 flex items-center gap-2 text-[10px] text-emerald-800 font-semibold">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 inline-block animate-pulse" />
+            <span>GPS Match: Within 15 meters of restaurant venue</span>
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <button className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-center text-[10px] cursor-pointer">
+            Clock In (08:01 AM)
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 w-full h-[280px] flex flex-col justify-between text-xs text-gray-700">
+      <div>
+        <div className="flex justify-between items-center mb-3">
+          <h5 className="font-extrabold text-[#002171] uppercase tracking-wider text-[11px]">Anonymous Shift Feedback</h5>
+          <span className="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Live Analytics</span>
+        </div>
+        <p className="text-[10px] text-gray-500 mb-3 text-center">How was your shift today?</p>
+        <div className="flex justify-around items-center mb-4">
+          <button className="text-2xl hover:scale-125 transition-transform duration-100 cursor-pointer">😠</button>
+          <button className="text-2xl hover:scale-125 transition-transform duration-100 cursor-pointer">😐</button>
+          <button className="text-3xl hover:scale-125 transition-transform duration-100 cursor-pointer filter drop-shadow">😊</button>
+        </div>
+        <div className="flex flex-wrap gap-1.5 justify-center">
+          <span className="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full">Great Teamwork</span>
+          <span className="bg-gray-100 text-gray-600 text-[9px] font-bold px-2.5 py-1 rounded-full">Understaffed</span>
+          <span className="bg-blue-100 text-blue-800 text-[9px] font-bold px-2.5 py-1 rounded-full">Busy & Fun</span>
+        </div>
+      </div>
+      <div className="border-t pt-2 text-center">
+        <span className="text-[10px] font-bold text-gray-900">Weekly Morale Score: 4.6 / 5.0</span>
+      </div>
+    </div>
+  );
+}
+
 export default function LandingView({ onLaunchApp, onNavigateToPricing, showToast, subscription }: LandingViewProps) {
   const [activeFeatureTab, setActiveFeatureTab] = useState<'schedule' | 'ai' | 'clock' | 'morale'>('schedule');
   const [demoForm, setDemoForm] = useState({
@@ -282,12 +407,8 @@ export default function LandingView({ onLaunchApp, onNavigateToPricing, showToas
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-md aspect-video border border-outline-variant/15">
-            <img 
-              alt={activeShowcase.title} 
-              className="w-full h-full object-cover" 
-              src={activeShowcase.image}
-            />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-outline-variant/15 flex items-center justify-center bg-gray-50 p-4">
+            <InteractiveFeaturePreview activeTab={activeFeatureTab} />
           </div>
         </div>
       </section>
