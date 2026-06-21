@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Theme Colors matched exactly from the WorkforcePro specifications */
+  --color-primary: #006d43;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #00a86b;
+  --color-on-primary-container: #00331d;
+  --color-inverse-primary: #59de9b;
+  --color-primary-fixed: #78fbb6;
+  --color-primary-fixed-dim: #59de9b;
+  --color-on-primary-fixed: #002111;
+  --color-on-primary-fixed-variant: #005232;
+
+  --color-secondary: #545f73;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d5e0f8;
+  --color-on-secondary-container: #586377;
+  --color-secondary-fixed: #d8e3fb;
+  --color-secondary-fixed-dim: #bcc7de;
+  --color-on-secondary-fixed: #111c2d;
+  --color-on-secondary-fixed-variant: #3c475a;
+
+  --color-tertiary: #9b4500;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #e1752c;
+  --color-on-tertiary-container: #4b1e00;
+  --color-tertiary-fixed: #ffdbc9;
+  --color-tertiary-fixed-dim: #ffb68d;
+  --color-on-tertiary-fixed: #331200;
+  --color-on-tertiary-fixed-variant: #763300;
+
+  --color-background: #f7f9fb;
+  --color-on-background: #191c1e;
+
+  --color-surface: #f7f9fb;
+  --color-on-surface: #191c1e;
+  --color-surface-dim: #d8dadc;
+  --color-surface-bright: #f7f9fb;
+  --color-on-surface-variant: #3d4a41;
+  --color-surface-variant: #e0e3e5;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-highest: #e0e3e5;
+
+  --color-outline: #6d7a70;
+  --color-outline-variant: #bccabe;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Spacing aliases */
+  --spacing-container-margin: 16px;
+  --spacing-gutter: 12px;
+  --spacing-base: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+.custom-shadow {
+  box-shadow: 0px 4px 12px rgba(30, 41, 59, 0.05);
+}
+
+.status-bar-emerald {
+  border-left: 4px solid #00a86b;
+}
+
+.status-bar-orange {
+  border-left: 4px solid #e1752c;
+}
+
+.status-bar-blue {
+  border-left: 4px solid #545f73;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

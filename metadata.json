@@ -1,0 +1,6 @@
+{
+  "name": "WorkforcePro",
+  "description": "An interactive, mobile-optimized workforce and schedule management dashboard featuring real-time shift clocking, open shift claiming, shift swap system, anonymous shift surveys, and team announcements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
