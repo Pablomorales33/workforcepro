@@ -244,17 +244,17 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
       </div>
 
       {/* Additional Costs Section */}
-      <div className="bg-amber-50/50 dark:bg-amber-950/10 rounded-2xl p-md border border-amber-300/30 grid grid-cols-1 md:grid-cols-2 gap-md mt-xs">
+      <div className="bg-surface-container-low rounded-2xl p-md border border-outline-variant/20 grid grid-cols-1 md:grid-cols-2 gap-md mt-xs">
         <div>
-          <h4 className="font-bold text-xs text-amber-900 dark:text-amber-300 uppercase tracking-wider mb-xs">App Download Fee</h4>
-          <p className="text-[10px] text-amber-800/80 dark:text-amber-400/80 leading-relaxed">
-            Employees must pay a one-time fee of <strong>$2.99</strong> to download the mobile app on iOS or Android. The web browser version is completely free to use.
+          <h4 className="font-bold text-xs text-[#002171] dark:text-emerald-400 uppercase tracking-wider mb-xs">App Download Fee</h4>
+          <p className="text-[10px] text-on-surface-variant leading-relaxed">
+            Employees must pay a one-time fee of <strong className="text-on-surface font-extrabold">$2.99</strong> to download the mobile app on iOS or Android. The web browser version is completely free to use.
           </p>
         </div>
         <div>
-          <h4 className="font-bold text-xs text-amber-900 dark:text-amber-300 uppercase tracking-wider mb-xs">Setup &amp; Onboarding</h4>
-          <p className="text-[10px] text-amber-800/80 dark:text-amber-400/80 leading-relaxed">
-            Implementation, data migration, and training fees start from <strong>$99</strong> and scale based on organization size.
+          <h4 className="font-bold text-xs text-[#002171] dark:text-emerald-400 uppercase tracking-wider mb-xs">Setup &amp; Onboarding</h4>
+          <p className="text-[10px] text-on-surface-variant leading-relaxed">
+            Implementation, data migration, and training fees start from <strong className="text-on-surface font-extrabold">$99</strong> and scale based on organization size.
           </p>
         </div>
       </div>
