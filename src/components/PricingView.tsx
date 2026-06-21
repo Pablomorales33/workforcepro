@@ -84,49 +84,49 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
   const tiers = [
     {
       id: 'starter',
-      name: 'Starter Team',
-      desc: 'Ideal for small local establishments and single teams.',
-      priceMonthly: 29,
-      priceAnnual: 23,
+      name: 'Essentials Plan',
+      desc: 'Includes basic scheduling, shift swaps, and mobile access.',
+      priceMonthly: 2,
+      priceAnnual: 2,
       features: [
-        'Up to 15 active employees',
-        'Direct messaging & general channel',
-        'Standard shifts calendar scheduling',
-        'Basic shift release and claiming',
-        'Clock-in stopwatch logs'
+        'Billed at $2 / employee / month',
+        'Basic shift scheduling',
+        'Employee shift swaps',
+        'Mobile access (web browser version free)',
+        '30-day free trial included'
       ],
       popular: false,
-      buttonText: subscription.status === 'starter' ? 'Active Plan' : 'Upgrade to Starter',
+      buttonText: subscription.status === 'starter' ? 'Active Plan' : 'Upgrade to Essentials',
     },
     {
       id: 'pro',
-      name: 'Growth & AI Pro',
-      desc: 'Supercharge manager speed and team satisfaction with AI tools.',
-      priceMonthly: 79,
-      priceAnnual: 63,
+      name: 'Plus Plan',
+      desc: 'Adds attendance/payroll management, break enforcement, and multi-store administration.',
+      priceMonthly: 4,
+      priceAnnual: 4,
       features: [
-        'Up to 50 active employees',
-        'Everything in Starter',
-        'Advanced automated shift swap board',
-        'Gemini AI Shift Swap recommendations',
-        'Anonymous shift happiness surveys',
-        'Manager notification analytics'
+        'Billed at $4 / employee / month',
+        'Everything in Essentials',
+        'GPS Attendance & payroll logs',
+        'Break enforcement tools',
+        'Multi-store administration',
+        '30-day free trial included'
       ],
       popular: true,
-      buttonText: subscription.status === 'pro' ? 'Active Plan' : 'Upgrade to Pro',
+      buttonText: subscription.status === 'pro' ? 'Active Plan' : 'Upgrade to Plus',
     },
     {
       id: 'enterprise',
-      name: 'Enterprise Multi-site',
-      desc: 'Tailored for hospitality networks and franchise operations.',
+      name: 'Quote-Based Enterprise',
+      desc: 'For advanced features like POS integration, labor budgeting, and 24/7 support.',
       priceMonthly: null,
       priceAnnual: null,
       features: [
-        'Unlimited employees & locations',
-        'Dedicated 24/7 account manager',
-        'Custom shift swap compliance locks',
-        'Enterprise analytics & dashboard exports',
-        'Custom API integration support'
+        'Tailored custom subscription quote',
+        'POS integration & live sales feeds',
+        'Advanced labor budgeting models',
+        'Dedicated 24/7 priority support',
+        'Custom API & database access'
       ],
       popular: false,
       buttonText: subscription.status === 'enterprise' ? 'Current Plan' : 'Contact Sales',
@@ -143,7 +143,7 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
 
         <h2 className="text-2xl font-bold tracking-tight mb-2">Upgrade WorkforcePro</h2>
         <p className="text-xs text-on-surface-variant max-w-[448px] mx-auto leading-relaxed">
-          Scale your staffing, automate swaps, and use advanced Gemini scheduling intelligence to keep your shifts filled and employee morale high.
+          Select a pricing tier to match your team size. All plans include a risk-free 30-day trial.
         </p>
 
         {/* Current status summary if subscribed */}
@@ -162,33 +162,11 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
         )}
       </div>
 
-      {/* Monthly/Annual Toggle Switcher */}
-      <div className="flex justify-center items-center gap-sm mt-xs">
-        <span className={`text-xs font-medium ${billingCycle === 'monthly' ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Billed Monthly</span>
-        <button
-          onClick={() => setBillingCycle(prev => prev === 'monthly' ? 'annual' : 'monthly')}
-          className="w-12 h-6 bg-surface-container border border-outline-variant/40 rounded-full p-0.5 relative transition-colors duration-200 focus:outline-none"
-          aria-label="Billing cycle switch"
-        >
-          <div
-            className={`w-5 h-5 rounded-full bg-primary shadow-md transform transition-transform duration-200 ${
-              billingCycle === 'annual' ? 'translate-x-6' : 'translate-x-0'
-            }`}
-          />
-        </button>
-        <div className="flex items-center gap-xs">
-          <span className={`text-xs font-medium ${billingCycle === 'annual' ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Billed Annually</span>
-          <span className="bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-300/30">
-            Save 20%
-          </span>
-        </div>
-      </div>
-
       {/* Tier Pricing Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
         {tiers.map((t) => {
           const isCurrentPlan = subscription.status === t.id;
-          const displayPrice = billingCycle === 'annual' ? t.priceAnnual : t.priceMonthly;
+          const displayPrice = t.priceMonthly;
 
           return (
             <div
@@ -203,7 +181,7 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
             >
               {t.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-primary-container text-white text-[9px] font-bold uppercase tracking-wider px-sm py-1 rounded-full shadow flex items-center gap-1 border border-primary-container">
-                  <Sparkles size={10} /> Most Popular
+                  <Sparkles size={10} /> Recommended
                 </div>
               )}
 
@@ -217,13 +195,10 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
                 {displayPrice !== null ? (
                   <>
                     <span className="text-3xl font-black tracking-tight text-on-surface">${displayPrice}</span>
-                    <span className="text-xs text-on-surface-variant">/mo</span>
-                    <span className="text-[9px] text-primary/70 block mt-1 font-medium ml-1">
-                      (billed {billingCycle === 'annual' ? 'yearly' : 'monthly'})
-                    </span>
+                    <span className="text-xs text-on-surface-variant">/ employee / month</span>
                   </>
                 ) : (
-                  <span className="text-2xl font-black text-on-surface">Custom pricing</span>
+                  <span className="text-2xl font-black text-on-surface">Custom quote</span>
                 )}
               </div>
 
@@ -266,6 +241,22 @@ export default function PricingView({ showToast, subscription, onNavigate }: Pri
             </div>
           );
         })}
+      </div>
+
+      {/* Additional Costs Section */}
+      <div className="bg-amber-50/50 dark:bg-amber-950/10 rounded-2xl p-md border border-amber-300/30 grid grid-cols-1 md:grid-cols-2 gap-md mt-xs">
+        <div>
+          <h4 className="font-bold text-xs text-amber-900 dark:text-amber-300 uppercase tracking-wider mb-xs">App Download Fee</h4>
+          <p className="text-[10px] text-amber-800/80 dark:text-amber-400/80 leading-relaxed">
+            Employees must pay a one-time fee of <strong>$2.99</strong> to download the mobile app on iOS or Android. The web browser version is completely free to use.
+          </p>
+        </div>
+        <div>
+          <h4 className="font-bold text-xs text-amber-900 dark:text-amber-300 uppercase tracking-wider mb-xs">Setup &amp; Onboarding</h4>
+          <p className="text-[10px] text-amber-800/80 dark:text-amber-400/80 leading-relaxed">
+            Implementation, data migration, and training fees start from <strong>$99</strong> and scale based on organization size.
+          </p>
+        </div>
       </div>
 
       {/* Feature Matrix Breakdown Section */}

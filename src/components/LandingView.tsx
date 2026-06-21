@@ -450,7 +450,7 @@ export default function LandingView({ onLaunchApp, onNavigateToPricing, showToas
         <div className="text-center mb-md">
           <h3 className="text-2xl font-bold tracking-tight mb-2 text-[#002171]">Simple, Transparent Pricing</h3>
           <p className="text-xs text-on-surface-variant max-w-[448px] mx-auto">
-            Choose the plan that fits your staff size. Every tier starts with a 14-day free trial.
+            Choose the plan that fits your staff size. Every tier starts with a 30-day free trial.
           </p>
         </div>
 
