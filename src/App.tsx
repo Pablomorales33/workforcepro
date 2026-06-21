@@ -21,6 +21,31 @@ export default function App() {
     const params = new URLSearchParams(window.location.search);
     return (params.get('payment') || params.get('portal')) ? 'app' : 'landing';
   });
+
+  useEffect(() => {
+    if (window.history.state === null) {
+      window.history.replaceState({ viewMode }, '');
+    }
+
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state && event.state.viewMode) {
+        setViewMode(event.state.viewMode);
+      } else {
+        setViewMode('landing');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [viewMode]);
+
+  const navigateToView = (newMode: 'landing' | 'app') => {
+    setViewMode(newMode);
+    if (!window.history.state || window.history.state.viewMode !== newMode) {
+      window.history.pushState({ viewMode: newMode }, '');
+    }
+  };
+
   const [activeTab, setActiveTab] = useState<string>('home');
   const [weeklyHours, setWeeklyHours] = useState<number>(32);
   const [hotStreaks, setHotStreaks] = useState<number>(5);
@@ -104,7 +129,7 @@ export default function App() {
       await auth.signOut();
     }
     setCurrentUser(null);
-    setViewMode('landing');
+    navigateToView('landing');
     showToast('Signed out successfully.', 'info');
   };
 
@@ -443,16 +468,16 @@ export default function App() {
         simulated: sessionId?.startsWith('mock_') || false,
         sessionId: sessionId || undefined
       });
-      setViewMode('app');
+      navigateToView('app');
       setActiveTab('profile'); // Direct user to Profile to view the upgrade
       showToast(`Subscription successful! Upgraded to ${plan.toUpperCase()}.`, 'success');
       window.history.replaceState({}, document.title, window.location.pathname);
     } else if (payment === 'cancel') {
-      setViewMode('app');
+      navigateToView('app');
       showToast('Payment checkout cancelled.', 'warning');
       window.history.replaceState({}, document.title, window.location.pathname);
     } else if (portal === 'simulated') {
-      setViewMode('app');
+      navigateToView('app');
       showToast('Billing Portal session completed.', 'info');
       window.history.replaceState({}, document.title, window.location.pathname);
     }
@@ -536,7 +561,7 @@ export default function App() {
             onLogout={handleLogout}
             onNavigate={(tab) => {
               if (tab === 'landing') {
-                setViewMode('landing');
+                navigateToView('landing');
               } else {
                 setActiveTab(tab);
               }
@@ -550,7 +575,7 @@ export default function App() {
             subscription={subscription}
             onNavigate={(tab) => {
               if (tab === 'landing') {
-                setViewMode('landing');
+                navigateToView('landing');
               } else {
                 setActiveTab(tab);
               }
@@ -592,13 +617,13 @@ export default function App() {
         <LandingView
           onLaunchApp={() => {
             if (currentUser) {
-              setViewMode('app');
+              navigateToView('app');
             } else {
               setShowAuthModal(true);
             }
           }}
           onNavigateToPricing={() => {
-            setViewMode('app');
+            navigateToView('app');
             setActiveTab('pricing');
           }}
           showToast={showToast}
@@ -632,7 +657,7 @@ export default function App() {
             }}
           >
             <div className="flex justify-between items-center px-container-margin py-md">
-              <div className="flex items-center gap-sm cursor-pointer" onClick={() => setViewMode('landing')}>
+              <div className="flex items-center gap-sm cursor-pointer" onClick={() => navigateToView('landing')}>
                 <img 
                   alt="WorkforcePro Logo" 
                   className="h-12 w-auto object-contain" 
@@ -675,12 +700,12 @@ export default function App() {
               </div>
             </div>
           </header>
-
+ 
           {/* Main Screen Body portion */}
           <main className="flex-1 max-w-[768px] w-full mx-auto px-container-margin pt-lg">
             {renderView()}
           </main>
-
+ 
           {/* Navigation bottom bar panel */}
           <Navigation 
             activeTab={activeTab} 
@@ -689,12 +714,12 @@ export default function App() {
           />
         </div>
       )}
-
+ 
       {showAuthModal && (
         <AuthView
           onAuthSuccess={(user) => {
             setCurrentUser(user);
-            setViewMode('app');
+            navigateToView('app');
           }}
           onClose={() => setShowAuthModal(false)}
           showToast={showToast}
