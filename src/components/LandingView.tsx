@@ -51,7 +51,7 @@ export default function LandingView({ onLaunchApp, onNavigateToPricing, showToas
       title: 'Gemini AI Shift Swaps & Compliance',
       desc: 'Let our integrated AI handle shift coverage suggestions. When an employee requests a swap, Gemini automatically checks qualifications, verifies compliance rules, and suggests the best candidates to fill the gap.',
       metrics: 'Reduce empty shift holes by 84% through automated matching.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuExchange-sarah-manager',
+      image: '/ai_shift_swaps.png',
       icon: Sparkles
     },
     clock: {
