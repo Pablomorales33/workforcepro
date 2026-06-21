@@ -125,10 +125,8 @@ async function startServer() {
     }
 
     try {
-      // Calculate payment amounts: Starter ($29/mo, $23/mo if annual), Pro ($79/mo, $63/mo if annual)
-      const unitAmount = planId === "starter"
-        ? (billingCycle === "annual" ? 2300 : 2900)
-        : (billingCycle === "annual" ? 6300 : 7900);
+      // Calculate payment amounts: Essentials ($2/month per employee), Plus ($4/month per employee)
+      const unitAmount = planId === "starter" ? 200 : 400;
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
